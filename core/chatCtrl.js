@@ -13,7 +13,7 @@
 
       $http({
         method: 'GET',
-        url: 'http://jzchatbot-jzchatbot.a3c1.starter-us-west-1.openshiftapps.com/api/text/' + chat.chat_input
+        url: 'http://jzchatbot-jzchatbot2.a3c1.starter-us-west-1.openshiftapps.com/api/text/' + chat.chat_input
       }).then(function successCallback(response) {
 
 				console.log('What do we get?', response);
