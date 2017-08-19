@@ -1,0 +1,23 @@
+<div class="demo-container mdl-grid">
+  <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+  <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col" style="min-height:500px;">
+
+    <h3>Hi!</h3>
+      <p>
+        CCC > Hi! I'm Clappy, the Crappy Chatbot! Well, i'm more like a glorified IVR than a chatbot....I have confidence issues. Anyway, how can I help you?!
+      </p>
+      <p ng-repeat="chat in chat.chatResponses track by $index">
+          {{chat}}
+      </p>
+
+
+  </div>
+</div>
+<div class="demo-container mdl-grid">
+  <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+  <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
+      <div id="chat_input">
+        <input/ ng-model="chat.chat_input" ng-keydown="$event.keyCode == 13 ? chat.sendText() : null">>
+      </div>
+  </div>
+</div>
