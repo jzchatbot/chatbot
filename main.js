@@ -25,7 +25,10 @@ app.use(function(req, res, next) {
 
   next();
 });
-router.get('/', function(req, res) {
+
+app.use(express.static('/'))
+
+router.get('/api/text', function(req, res) {
   console.log(req.originalUrl);
   var textOutput = req.originalUrl.replace('/api/text/', '');
   textOutput = decodeURI(textOutput);
@@ -34,6 +37,11 @@ router.get('/', function(req, res) {
   var request = apiai.textRequest(textOutput, {
       sessionId: req.session.id
   });
+
+  router.get('/', function(req, res) {
+  console.log("routing from route")
+  res.redirect('index.html');
+});
 
 
   request.on('response', function(response) {
