@@ -5,8 +5,11 @@ var bodyParser = require('body-parser');
 var rest = require('restler');
 var apiai = require('apiai');
 var session = require('express-session')
+var cors = require('cors')
 
-app.set('trust proxy', 1) // trust first proxy
+app.options('*', cors()) // include before other routes
+
+//app.set('trust proxy', 1) // trust first proxy
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
