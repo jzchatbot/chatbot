@@ -34,6 +34,8 @@ router.get('/', function(req, res) {
   request.on('response', function(response) {
     response.setHeader("Access-Control-Allow-Origin", "*");
     response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers")
+    response.setHeader("Pragma", "*")
+    response.setHeader("If-Modified-Since", "*")
     //  console.log(response);
     res.json(response);
   });
@@ -48,7 +50,7 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Pragma", "*")
-  res.header("If-Modified-Since", "*") 
+  res.header("If-Modified-Since", "*")
   next();
 });
 app.use('/api/text/*', router);
