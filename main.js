@@ -49,5 +49,5 @@ app.use(function(req, res, next) {
 app.use('/api/text/*', router);
 // START THE SERVER
 // =============================================================================
-app.listen(8675);
-console.log('Magic happens on port 8675');
+app.listen(8080);
+console.log('Magic happens on port 8080');
