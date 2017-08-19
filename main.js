@@ -17,6 +17,7 @@ app.use(session({
 
 
 var apiai = apiai("ca6e754be1274b94822b83a4412144c4");
+app.use(express.static(path.join(__dirname, '/')));
 
 var router = express.Router();
 app.use(function(req, res, next) {
@@ -26,7 +27,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(express.static('/'))
 
 router.get('/api/text', function(req, res) {
   console.log(req.originalUrl);
@@ -38,10 +38,7 @@ router.get('/api/text', function(req, res) {
       sessionId: req.session.id
   });
 
-  router.get('/', function(req, res) {
-  console.log("routing from route")
-  res.redirect('index.html');
-});
+
 
 
   request.on('response', function(response) {
