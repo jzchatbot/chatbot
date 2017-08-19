@@ -19,7 +19,12 @@ app.use(session({
 var apiai = apiai("ca6e754be1274b94822b83a4412144c4");
 
 var router = express.Router();
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Pragma, If-Modified-Since";
 
+  next();
+});
 router.get('/', function(req, res) {
   console.log(req.originalUrl);
   var textOutput = req.originalUrl.replace('/api/text/', '');
@@ -33,7 +38,7 @@ router.get('/', function(req, res) {
 
   request.on('response', function(response) {
     response.setHeader("Access-Control-Allow-Origin", "*");
-    response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Pragma, If-Modified-Since")
+    response.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Pragma, If-Modified-Since")
 
     //  console.log(response);
     res.json(response);
@@ -45,11 +50,7 @@ router.get('/', function(req, res) {
 
   request.end();
 });
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+
 app.use('/api/text/*', router);
 // START THE SERVER
 // =============================================================================
