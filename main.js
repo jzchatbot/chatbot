@@ -23,16 +23,23 @@ var apiai = apiai("ca6e754be1274b94822b83a4412144c4");
 
 var router = express.Router();
 
+var getQueryString = function (field, url) {
+	var href = url;
+	var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+	var string = reg.exec(href);
+	return string ? string[1] : null;
+};
+
 router.get('/', function(req, res) {
-  console.log(req.originalUrl);
-  var textOutput = req.originalUrl.replace('/api/text/', '');
+
+  console.log(req.baseUrl);
+  var textOutput = req.baseUrl.replace('/api/text/', '');
   textOutput = decodeURI(textOutput);
-  console.log(textOutput);
+  console.log(req.session.id);
 
   var request = apiai.textRequest(textOutput, {
-      sessionId: req.session.id
+      sessionId: req.query.sessionID
   });
-
   request.on('response', function(response) {
     //  console.log(response);
     res.json(response);

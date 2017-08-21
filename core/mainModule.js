@@ -1,4 +1,4 @@
-angular.module('chatBot', ['ngRoute'])
+angular.module('chatBot', ['ngRoute','luegg.directives'])
 .config(['$httpProvider', function($httpProvider) {
 	//initialize get if not there
 	if (!$httpProvider.defaults.headers.get) {
